@@ -1,0 +1,6 @@
+.link {
+  @apply rounded-[6px] bg-[#F5F8FF] py-2 px-4;
+}
+.footerLink {
+  @apply text-[#0500FF] text-sm underline;
+}
