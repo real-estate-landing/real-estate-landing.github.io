@@ -11,12 +11,12 @@ import {
   Zoom,
 } from "@mui/material";
 import styles from "./tab.module.css";
-import React from "react";
+import React, { useRef } from "react";
 import { makeStyles } from "../../../../../../styles";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
-import { EffectCards } from "swiper/modules";
+import { EffectCards, Navigation, Pagination } from "swiper/modules";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
@@ -25,16 +25,21 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 // imgs
 import firstImg from "../../../../../../assets/images/firstImg.jpg";
-import secondImg from "../../../../../../assets/images/dbPage.jpg";
-import thirdImg from "../../../../../../assets/images/dealPage.jpg";
-import fourthImg from "../../../../../../assets/images/dbAddPage.jpg";
-import fifthImg from "../../../../../../assets/images/tasksPage.jpg";
-import sixthImg from "../../../../../../assets/images/requestPage.jpg";
-import seventhImg from "../../../../../../assets/images/contactsPage.jpg";
-import eighthImg from "../../../../../../assets/images/dbObjectPage.jpg";
-import ninthImg from "../../../../../../assets/images/employeesPage.jpg";
-import tenthImg from "../../../../../../assets/images/employeeEdit.jpg";
+import secondImg from "../../../../../../assets/images/secondImg.jpg";
+import thirdImg from "../../../../../../assets/images/thirdImg.jpg";
+import fourthImg from "../../../../../../assets/images/fourthImg.jpg";
+import fifthImg from "../../../../../../assets/images/fifthImg.jpg";
+import dbPageImg from "../../../../../../assets/images/dbPage.jpg";
+import dealPageImg from "../../../../../../assets/images/dealPage.jpg";
+import dbAddPageImg from "../../../../../../assets/images/dbAddPage.jpg";
+import tasksPageImg from "../../../../../../assets/images/tasksPage.jpg";
+import requestPageImg from "../../../../../../assets/images/requestPage.jpg";
+// import contactsPageImg from "../../../../../../assets/images/contactsPage.jpg";
+// import dbObjectPageImg from "../../../../../../assets/images/dbObjectPage.jpg";
+// import employeesPageImg from "../../../../../../assets/images/employeesPage.jpg";
+// import employeeEditImg from "../../../../../../assets/images/employeeEdit.jpg";
 import { useContact } from "../../../../../../contexts/contact";
+import SwiperController from "./swiperController/swiperController";
 
 interface Props {
   tabs:
@@ -171,17 +176,18 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
   const { classes } = useStyles();
   const [value, setValue] = React.useState(0);
   const [toggle, setToogle] = React.useState(false);
+  const swiperRef = useRef<SwiperRef>(null);
   const swiperImgs = [
     firstImg,
     secondImg,
     thirdImg,
     fourthImg,
     fifthImg,
-    sixthImg,
-    seventhImg,
-    eighthImg,
-    ninthImg,
-    tenthImg,
+    dbPageImg,
+    dealPageImg,
+    dbAddPageImg,
+    tasksPageImg,
+    requestPageImg,
   ];
   const colors = [
     "bg-blue-900",
@@ -311,7 +317,8 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
             <Swiper
               effect={"cards"}
               grabCursor={true}
-              modules={[EffectCards]}
+              ref={swiperRef}
+              modules={[EffectCards, Navigation, Pagination]}
               className="min-[500px]:max-w-[360px] w-full aspect-square border-0 flex items-center justify-center"
             >
               {swiperImgs.map((item, index) => (
@@ -333,6 +340,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
                   </IconButton>
                 </SwiperSlide>
               ))}
+              <SwiperController value={value} />
             </Swiper>
           </div>
         </div>

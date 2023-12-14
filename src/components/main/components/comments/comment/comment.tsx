@@ -34,7 +34,9 @@ export default function Comment({
             : "0ms",
       }}
     >
-      <div className="px-6 py-8 bg-[#3F51B5] rounded-[10px] border border-[#F5F8FF] text-white text-sm relative">
+      <div
+        className={`px-6 py-8 bg-[#3F51B5] rounded-[10px] border border-[#F5F8FF] text-white text-sm relative`}
+      >
         <h2 className="font-semibold text-xl mb-2">{comment.name}</h2>
         <p>{comment.position}</p>
         <div className="flex gap-2 my-3">{resultStar}</div>

@@ -1,4 +1,7 @@
-import partnersImage from "../../../../assets/images/partners.png";
+// import partnersImage from "../../../../assets/images/partners.png";
+import kntImg from "../../../../assets/images/knt.png";
+import newHouseImg from "../../../../assets/images/newHouse.png";
+import newLife from "../../../../assets/images/newLife.png";
 import Card from "./components/card/card";
 import { useTranslation } from "react-i18next";
 import { useContact } from "../../../../contexts/contact";
@@ -11,17 +14,17 @@ export default function Partners() {
   const { t } = useTranslation();
   const partners = [
     {
-      img: partnersImage,
+      img: newHouseImg,
       header: t("partnersHeader1"),
       text: t("partnersText1"),
     },
     {
-      img: partnersImage,
+      img: kntImg,
       header: t("partnersHeader2"),
       text: t("partnersText2"),
     },
     {
-      img: partnersImage,
+      img: newLife,
       header: t("partnersHeader3"),
       text: t("partnersText3"),
     },
