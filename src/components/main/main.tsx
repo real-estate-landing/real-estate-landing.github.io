@@ -8,7 +8,7 @@ import Faq from "./components/faq/faq";
 
 export default function Main() {
   return (
-    <main>
+    <main style={{ overflow: "hidden" }}>
       <MainHeader />
       <Complex />
       <Solution />

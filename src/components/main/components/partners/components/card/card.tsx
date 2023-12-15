@@ -1,5 +1,5 @@
 import styles from "./card.module.css";
-import { Zoom } from "@mui/material";
+import { Box, Tooltip, Zoom } from "@mui/material";
 import telegram from "../../../../../../assets/images/telegram.png";
 import instagram from "../../../../../../assets/images/instagram.png";
 import facebook from "../../../../../../assets/images/Facebook.png";
@@ -11,6 +11,12 @@ type typeProps = {
   img: string;
   text: string;
   header: string;
+  contact: {
+    phoneNumber: string;
+    telegramLink: string;
+    instagramLink: string;
+    facebookLink: string;
+  };
   isSolutionRefVisible: boolean;
   index: number;
 };
@@ -28,6 +34,7 @@ export default function Card({
   header,
   isSolutionRefVisible,
   index,
+  contact: { phoneNumber, telegramLink, instagramLink, facebookLink },
 }: typeProps) {
   const { classes } = useStyles();
   const contactContext = useContact();
@@ -52,22 +59,32 @@ export default function Card({
           alt="image"
           loading="lazy"
         />
-        <p className="text-center text-[#737373]">{text}</p>
-        <span className={classes.contact_text}>
-          <a href="tel:+935449996">
-            <CallIcon fontSize="small" /> + (93) 544-99-96
-          </a>
-        </span>
+        <Tooltip title={text}>
+          <Box
+            sx={{ maxHeight: 150, minHeight: 150, overflow: "hidden" }}
+            component="p"
+            className="text-center text-[#737373]"
+          >
+            {text}
+          </Box>
+        </Tooltip>
+        {phoneNumber && (
+          <span className={classes.contact_text}>
+            <a href="tel:+935449996">
+              <CallIcon fontSize="small" /> {phoneNumber}
+            </a>
+          </span>
+        )}
         <div className="flex justify-center gap-4 mt-4">
-          <a href="https://t.me/KNTUZB" target="_blank">
+          <a href={telegramLink} target="_blank">
             <img src={telegram} alt="telegram social-link" loading="lazy" />
           </a>
 
-          <a href="https://www.instagram.com/kntuzb/" target="_blank">
+          <a href={instagramLink} target="_blank">
             <img src={instagram} alt="instagram social-link" loading="lazy" />
           </a>
 
-          <a href="https://www.facebook.com/KNTUZB" target="_blank">
+          <a href={facebookLink} target="_blank">
             <img src={facebook} alt="facebook social-link" loading="lazy" />
           </a>
         </div>

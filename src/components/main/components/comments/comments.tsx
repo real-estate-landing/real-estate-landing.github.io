@@ -14,7 +14,8 @@ import SwiperController from "./commentsController/commantsController";
 
 const useStyles = makeStyles()(() => ({
   commentSwiper: {
-    width: "90%",
+    width: "100%",
+    maxWidth: "1220px",
   },
 }));
 export default function Comments() {

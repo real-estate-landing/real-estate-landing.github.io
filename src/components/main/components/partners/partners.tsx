@@ -17,16 +17,28 @@ export default function Partners() {
       img: newHouseImg,
       header: t("partnersHeader1"),
       text: t("partnersText1"),
+      telNumber: "",
+      instagram: "",
+      facebook: "",
+      telegram: "",
     },
     {
       img: kntImg,
       header: t("partnersHeader2"),
       text: t("partnersText2"),
+      telNumber: "+998935449996",
+      instagram: "https://www.instagram.com/kntuzb/",
+      facebook: "https://www.facebook.com/KNTUZB",
+      telegram: "https://t.me/KNTUZB",
     },
     {
       img: newLife,
       header: t("partnersHeader3"),
       text: t("partnersText3"),
+      telNumber: "",
+      instagram: "",
+      facebook: "",
+      telegram: "",
     },
   ];
 
@@ -36,6 +48,12 @@ export default function Partners() {
         img={partner.img}
         header={partner.header}
         text={partner.text}
+        contact={{
+          phoneNumber: partner.telNumber,
+          telegramLink: partner.telegram,
+          instagramLink: partner.instagram,
+          facebookLink: partner.facebook,
+        }}
         isSolutionRefVisible={isPartnersRefVisible}
         index={i}
       />
