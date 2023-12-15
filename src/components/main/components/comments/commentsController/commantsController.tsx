@@ -2,6 +2,7 @@ import { makeStyles } from "../../../../../styles";
 import { useSwiper } from "swiper/react";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useMediaQuery } from "@mui/material";
 
 type Props = {
   isBeginning: boolean;
@@ -24,41 +25,38 @@ const useStyles = makeStyles()(() => ({
     borderRadius: "50%",
     cursor: "pointer",
     transition: "400ms ease",
+
+    "&:enabled": {
+      "&:hover": {
+        opacity: 1,
+        border: "1px solid #fff",
+      },
+    },
+    "&:disabled": {
+      opacity: 0.6,
+    },
   },
   btn_left: {
     position: "absolute",
-    left: "0px",
-    opacity: 0.6,
-    "&:hover": {
-      opacity: 1,
-      border: "1px solid #fff",
-    },
-    "&:disabled": {
-      opacity: 0.6,
-    },
+    left: "-10px",
   },
   btn_right: {
     position: "absolute",
-    right: "0px",
-    opacity: 0.6,
-    "&:hover": {
-      opacity: 1,
-      border: "1px solid #fff",
-    },
-    "&:disabled": {
-      opacity: 0.6,
-    },
+    right: "-10px",
   },
 }));
 function CommantsController({ isBeginning, isEnding }: Props) {
   const { classes } = useStyles();
   const swiper = useSwiper();
+  const isItLarge = useMediaQuery("(min-width:1050px)");
+  // const isItMiddle = useMediaQuery("(min-width:700px)");
   return (
     <div className={classes.controller}>
       <button
         onClick={() => swiper.slidePrev()}
         className={`${classes.btn} ${classes.btn_left}`}
         disabled={isBeginning}
+        style={isItLarge ? { left: "-32px" } : null}
       >
         <KeyboardArrowLeftIcon fontSize="large" />
       </button>
@@ -66,6 +64,7 @@ function CommantsController({ isBeginning, isEnding }: Props) {
         onClick={() => swiper.slideNext()}
         className={`${classes.btn} ${classes.btn_right}`}
         disabled={isEnding}
+        style={isItLarge ? { right: "-32px" } : null}
       >
         <KeyboardArrowRightIcon fontSize="large" />
       </button>

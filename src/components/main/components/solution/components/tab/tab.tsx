@@ -330,6 +330,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
                     src={item}
                     alt="firstImg"
                     className={classes.swiperImg}
+                    style={index === 2 ? { objectPosition: "center" } : null}
                     loading="lazy"
                   />
                   <IconButton

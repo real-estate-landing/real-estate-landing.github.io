@@ -1,11 +1,12 @@
 import Comment from "./comment/comment";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Slide, useMediaQuery } from "@mui/material";
 import { Element } from "react-scroll";
 import { useContact } from "../../../../contexts/contact";
 import { useInView } from "react-intersection-observer";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
+import "./comment.css";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,7 +25,7 @@ export default function Comments() {
   const contactContext = useContact();
   const { t } = useTranslation();
   const swiperRef = useRef<SwiperRef>(null);
-  const [isBeginning, setIsBeginning] = useState(false);
+  const [isBeginning, setIsBeginning] = useState(true);
   const [isEnding, setIsEnding] = useState(false);
   const isItLarge = useMediaQuery("(min-width:1050px)");
   const isItMiddle = useMediaQuery("(min-width:700px)");
@@ -54,6 +55,9 @@ export default function Comments() {
     },
   ];
 
+  useEffect(() => {
+    if (isItLarge && comments.length <= 3) setIsEnding(true);
+  }, []);
   const result = comments.map((comment, index) => {
     return (
       <SwiperSlide key={index}>
@@ -94,7 +98,7 @@ export default function Comments() {
             setIsEnding(swiperRef?.current?.swiper?.isEnd);
           }}
           style={{
-            position: "relative",
+            overflow: "visible !important",
           }}
         >
           {result}

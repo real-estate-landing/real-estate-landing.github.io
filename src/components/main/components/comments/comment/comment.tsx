@@ -35,7 +35,7 @@ export default function Comment({
       }}
     >
       <div
-        className={`px-6 py-8 bg-[#3F51B5] rounded-[10px] border border-[#F5F8FF] text-white text-sm relative`}
+        className={`px-6 py-8 bg-[#3F51B5] rounded-[10px] border border-[#F5F8FF] text-white text-sm relative min-h-[200px]`}
       >
         <h2 className="font-semibold text-xl mb-2">{comment.name}</h2>
         <p>{comment.position}</p>
