@@ -11,18 +11,16 @@ type commentType = {
     rating: string;
     text: string;
   };
-  key: number;
   isCommentsRefVisible: boolean;
 };
 export default function Comment({
   comment,
   isCommentsRefVisible,
-  key,
 }: commentType) {
   const contactContext = useContact();
   const resultStar = [];
   for (let i = 0; i < +comment.rating; i++) {
-    resultStar.push(<img src={star} alt="star" loading="lazy" />);
+    resultStar.push(<img src={star} alt="star" loading="lazy" key={i} />);
   }
   return (
     <Zoom
@@ -30,7 +28,7 @@ export default function Comment({
       style={{
         transitionDelay:
           !!contactContext?.state.lng && isCommentsRefVisible
-            ? `${500 + key * 100}ms`
+            ? `${500 + comment.id * 100}ms`
             : "0ms",
       }}
     >

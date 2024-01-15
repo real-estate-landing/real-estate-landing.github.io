@@ -129,15 +129,15 @@ const useStyles = makeStyles()((theme) => ({
     // padding: "0px 5px",
     "&::-webkit-scrollbar": {
       width: "6px",
-      "border-radius": "15px",
+      borderRadius: "15px",
     },
     "&::-webkit-scrollbar-track": {
       background: "rgb(231, 230, 230)",
-      "border-radius": "15px",
+      borderRadius: "15px",
     },
     "&::-webkit-scrollbar-thumb": {
       background: "white",
-      "border-radius": "15px",
+      borderRadius: "15px",
     },
 
     "&:hover": {
@@ -340,8 +340,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   function returnFilteredArray(arr: string[] | undefined, search: string) {
     return arr?.filter((val) => val.includes(search ?? "") && val.length > 0);
   }
-  console.log({ names });
-  console.log({ phones });
+
   useEffect(() => {
     if (name?.length === 0) searchByName(undefined);
   }, [name]);
@@ -462,7 +461,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                   return phone.length > 1 ? (
                     <>
                       <MenuItem
-                        key={phone}
+                        key={index}
                         sx={{
                           display: "flex",
                           alignItems: "center",
@@ -490,7 +489,9 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                         </Box>
                       </MenuItem>
                     </>
-                  ) : null;
+                  ) : (
+                    <div key={index}></div>
+                  );
                 })
               ) : (
                 <>
@@ -525,7 +526,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                   return name.length > 1 ? (
                     <>
                       <MenuItem
-                        key={name}
+                        key={index}
                         sx={{
                           display: "flex",
                           alignItems: "center",
@@ -552,7 +553,9 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                         </Box>
                       </MenuItem>
                     </>
-                  ) : null;
+                  ) : (
+                    <div key={index}></div>
+                  );
                 })
               ) : (
                 <>
@@ -670,7 +673,7 @@ function GroupCall({
     name: undefined,
     status: "all",
   });
-  console.log("selected Items to delete", selected);
+
   const [selectedId, setSelectedId] = useState("");
   const [reloadTable, setReloadTable] = useState(true);
   const [page, setPage] = React.useState(0);
@@ -755,10 +758,9 @@ function GroupCall({
     }
   }, []);
   useEffect(() => {
-    console.log({ searchFilter });
     fetchData();
   }, [page, rowsPerPage, direction, reloadTable, searchFilter]);
-  console.log(contactsController?.data);
+
   const rows: contactTableType[] = contactsController?.data?.map((item) => {
     return createData(
       item.id,
@@ -850,7 +852,6 @@ function GroupCall({
   };
 
   const handleChangePage = (_event: unknown, newPage: number) => {
-    console.log(newPage);
     setDirection(
       newPage === 0 ? undefined : newPage > page ? "forward" : "back"
     );
@@ -922,6 +923,7 @@ function GroupCall({
             searchByPhone={searchByPhone}
             searchByStatus={searchByStatus}
             statusSelected={pageStatus}
+            key={0}
           />
           {rows?.length > 0 ? (
             <>
@@ -954,7 +956,7 @@ function GroupCall({
                           role="checkbox"
                           aria-checked={isItemSelected}
                           tabIndex={-1}
-                          key={row.id}
+                          key={index}
                           selected={isItemSelected}
                           sx={{ cursor: "pointer" }}
                           className={
@@ -1082,7 +1084,6 @@ function GroupCall({
                                 onClick={(e) => {
                                   handleStatusClose(e);
                                   updateUserStatus(selectedId, "purchased");
-                                  console.log("purchased");
                                 }}
                               >
                                 <LocalMallIcon sx={{ marginRight: "5px" }} />
@@ -1094,7 +1095,6 @@ function GroupCall({
                                 onClick={(e) => {
                                   handleStatusClose(e);
                                   updateUserStatus(selectedId, "wannaTry");
-                                  console.log("wannatry clicked");
                                 }}
                               >
                                 <FlagIcon sx={{ marginRight: "5px" }} />
@@ -1106,7 +1106,6 @@ function GroupCall({
                                 onClick={(e) => {
                                   handleStatusClose(e);
                                   updateUserStatus(selectedId, undefined);
-                                  console.log("wannatry clicked");
                                 }}
                               >
                                 <DoNotDisturbIcon sx={{ marginRight: "5px" }} />
@@ -1149,15 +1148,6 @@ function GroupCall({
                         </TableRow>
                       );
                     })}
-                    {/* {emptyRows > 0 && (
-                    <TableRow
-                      style={{
-                        height: (dense ? 33 : 53) * emptyRows,
-                      }}
-                    >
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )} */}
                   </TableBody>
                 </Table>
               </TableContainer>

@@ -33,6 +33,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import FlagIcon from "@mui/icons-material/Flag";
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { routeMethods } from "../../../routes";
 
 const drawerWidth = 250;
 
@@ -141,7 +143,7 @@ type Props = {
 
 function Base({ children }: Props) {
   const location = useLocation();
-  console.log(location);
+
   const theme = useTheme();
   const { saveSettings, settings } = useSettings();
   const [lightMode, setLightMode] = useState(settings.theme === "light");
@@ -244,168 +246,236 @@ function Base({ children }: Props) {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon sx={{ color: theme.palette.text.secondary }} />
-            ) : (
-              <ChevronLeftIcon sx={{ color: theme.palette.text.secondary }} />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {[
-            { text: t("sidebarBr1Title1"), url: "/" },
-            { text: t("sidebarBr1Title2"), url: "/freeTrialUsers" },
-            { text: t("sidebarBr1Title3"), url: "/purchasedUsers" },
-            { text: t("sidebarBr1Title4"), url: "/wantToTrySoonUsers" },
-          ].map((text, index) => (
-            <Tooltip
-              title={text.text}
-              placement="right"
-              arrow
-              sx={{ fontSize: "20px" }}
-            >
-              <NavLink
-                to={text.url}
-                style={{
-                  textDecoration: "none",
-                }}
+        <Box sx={{ height: "100%" }}>
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "rtl" ? (
+                <ChevronRightIcon
+                  sx={{ color: theme.palette.text.secondary }}
+                />
+              ) : (
+                <ChevronLeftIcon sx={{ color: theme.palette.text.secondary }} />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            {[
+              { text: t("sidebarBr1Title1"), url: "/" },
+              { text: t("sidebarBr1Title2"), url: "/freeTrialUsers" },
+              { text: t("sidebarBr1Title3"), url: "/purchasedUsers" },
+              { text: t("sidebarBr1Title4"), url: "/wantToTrySoonUsers" },
+            ].map((text, index) => (
+              <Tooltip
+                key={index}
+                title={text.text}
+                placement="right"
+                arrow
+                sx={{ fontSize: "20px" }}
               >
-                <ListItem
-                  key={text.text}
-                  disablePadding
-                  sx={{
-                    display: "block",
-                    backgroundColor:
-                      location.pathname === text.url
-                        ? theme.palette.primary.main
-                        : "",
-                    color:
-                      location.pathname === text.url
-                        ? "#fff"
-                        : theme.palette.text.primary,
+                <NavLink
+                  to={text.url}
+                  style={{
+                    textDecoration: "none",
                   }}
                 >
-                  <ListItemButton
+                  <ListItem
+                    key={text.text}
+                    disablePadding
                     sx={{
-                      minHeight: 48,
-                      justifyContent: open ? "initial" : "center",
-                      px: 2.5,
+                      display: "block",
+                      backgroundColor:
+                        location.pathname === text.url
+                          ? theme.palette.primary.main
+                          : "",
+                      color:
+                        location.pathname === text.url
+                          ? "#fff"
+                          : theme.palette.text.primary,
                     }}
                   >
-                    <ListItemIcon
+                    <ListItemButton
                       sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : "auto",
-                        justifyContent: "center",
-                        color: location.pathname === text.url ? "#fff" : "",
+                        minHeight: 48,
+                        justifyContent: open ? "initial" : "center",
+                        px: 2.5,
                       }}
                     >
-                      {index === 0 ? (
-                        <InboxIcon />
-                      ) : index === 1 ? (
-                        <MoreTimeIcon />
-                      ) : index === 2 ? (
-                        <LocalMallIcon />
-                      ) : (
-                        <FlagIcon />
-                      )}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={text.text}
-                      sx={{
-                        opacity: open ? 1 : 0,
-                      }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              </NavLink>
-            </Tooltip>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {[
-            { text: t("sidebarBr2Title1"), url: "/subscribers" },
-            // { text: t("sidebarBr2Title2"), url: "/blockedSubscribers" },
-            // { text: t("sidebarBr2Title3"), url: "/sendEmail" },
-            // { text: t("sidebarBr2Title4"), url: "/emailsHistory" },
-          ].map((text) => (
-            <Tooltip
-              title={text.text}
-              placement="right"
-              arrow
-              sx={{ fontSize: "20px" }}
-            >
-              <NavLink
-                to={text.url}
-                style={{
-                  textDecoration: "none",
-                }}
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : "auto",
+                          justifyContent: "center",
+                          color: location.pathname === text.url ? "#fff" : "",
+                        }}
+                      >
+                        {index === 0 ? (
+                          <InboxIcon />
+                        ) : index === 1 ? (
+                          <MoreTimeIcon />
+                        ) : index === 2 ? (
+                          <LocalMallIcon />
+                        ) : (
+                          <FlagIcon />
+                        )}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={text.text}
+                        sx={{
+                          opacity: open ? 1 : 0,
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
+              </Tooltip>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {[
+              { text: t("sidebarBr2Title1"), url: "/subscribers" },
+              // { text: t("sidebarBr2Title2"), url: "/blockedSubscribers" },
+              // { text: t("sidebarBr2Title3"), url: "/sendEmail" },
+              // { text: t("sidebarBr2Title4"), url: "/emailsHistory" },
+            ].map((text, index) => (
+              <Tooltip
+                key={index}
+                title={text.text}
+                placement="right"
+                arrow
+                sx={{ fontSize: "20px" }}
               >
-                <ListItem
-                  key={text.text}
-                  disablePadding
-                  sx={{
-                    display: "block",
-                    backgroundColor:
-                      location.pathname === text.url
-                        ? theme.palette.primary.main
-                        : "",
-                    color:
-                      location.pathname === text.url
-                        ? "#fff"
-                        : theme.palette.text.primary,
+                <NavLink
+                  to={text.url}
+                  style={{
+                    textDecoration: "none",
                   }}
                 >
-                  <ListItemButton
+                  <ListItem
+                    key={text.text}
+                    disablePadding
                     sx={{
-                      minHeight: 48,
-                      justifyContent: open ? "initial" : "center",
-                      px: 2.5,
+                      display: "block",
+                      backgroundColor:
+                        location.pathname === text.url
+                          ? theme.palette.primary.main
+                          : "",
+                      color:
+                        location.pathname === text.url
+                          ? "#fff"
+                          : theme.palette.text.primary,
                     }}
                   >
-                    <ListItemIcon
+                    <ListItemButton
                       sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : "auto",
-                        justifyContent: "center",
-                        color: location.pathname === text.url ? "#fff" : "",
+                        minHeight: 48,
+                        justifyContent: open ? "initial" : "center",
+                        px: 2.5,
                       }}
                     >
-                      <MailIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={text.text}
-                      sx={{ opacity: open ? 1 : 0 }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              </NavLink>
-            </Tooltip>
-          ))}
-        </List>
-        <Divider />
-        <List
-          sx={{
-            display: "none",
-            [theme.breakpoints.down("md")]: {
-              display: "block",
-            },
-          }}
-        >
-          <LanguagePopover
-            language={language}
-            onLanguageChange={handleLanguageChange}
-            sidebarOpen={open}
-            positionSidebar
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : "auto",
+                          justifyContent: "center",
+                          color: location.pathname === text.url ? "#fff" : "",
+                        }}
+                      >
+                        <MailIcon />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={text.text}
+                        sx={{ opacity: open ? 1 : 0 }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
+              </Tooltip>
+            ))}
+          </List>
+          <Divider />
+          <List
             sx={{
-              width: "100%",
+              display: "none",
+              [theme.breakpoints.down("md")]: {
+                display: "block",
+              },
             }}
-          />
-        </List>
+          >
+            <LanguagePopover
+              language={language}
+              onLanguageChange={handleLanguageChange}
+              sidebarOpen={open}
+              positionSidebar
+              sx={{
+                width: "100%",
+              }}
+            />
+          </List>
+        </Box>
+        <Box>
+          <Divider />
+          <List>
+            {[{ text: t("sidebarBr1Title5"), url: "/" }].map((text, index) => (
+              <Tooltip
+                key={index}
+                title={text.text}
+                placement="right"
+                arrow
+                sx={{ fontSize: "20px" }}
+              >
+                <NavLink
+                  to={text.url}
+                  style={{
+                    textDecoration: "none",
+                  }}
+                  onClick={() => {
+                    const customWindow: routeMethods =
+                      window as unknown as routeMethods;
+                    customWindow.openUserPanel();
+                  }}
+                >
+                  <ListItem
+                    key={text.text}
+                    disablePadding
+                    sx={{
+                      display: "block",
+                      color:
+                        location.pathname === text.url
+                          ? theme.palette.text.primary
+                          : "#fff",
+                    }}
+                  >
+                    <ListItemButton
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? "initial" : "center",
+                        px: 2.5,
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : "auto",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {index === 0 ? <ExitToAppIcon /> : <FlagIcon />}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={text.text}
+                        sx={{
+                          opacity: open ? 1 : 0,
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
+              </Tooltip>
+            ))}
+          </List>
+        </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3, overflow: "hidden" }}>
         <DrawerHeader />

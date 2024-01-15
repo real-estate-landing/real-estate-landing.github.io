@@ -47,13 +47,11 @@ export default function Subscription() {
             <form
               onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
-                addUserForNews(email, name)
-                  .then((res) => {
-                    console.log({ res });
+                addUserForNews(email.trim(), name.trim())
+                  .then((_res) => {
                     setBackStatus("success");
                   })
                   .catch((err) => {
-                    console.log({ err });
                     setBackStatus(err.message);
                   });
               }}

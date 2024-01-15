@@ -45,6 +45,7 @@ export default function Partners() {
   const result = partners.map((partner, i) => {
     return (
       <Card
+        key={i}
         img={partner.img}
         header={partner.header}
         text={partner.text}

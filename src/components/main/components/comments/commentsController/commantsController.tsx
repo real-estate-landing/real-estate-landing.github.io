@@ -57,6 +57,7 @@ function CommantsController({ isBeginning, isEnding }: Props) {
         className={`${classes.btn} ${classes.btn_left}`}
         disabled={isBeginning}
         style={isItLarge ? { left: "-32px" } : null}
+        aria-label="slide to previous"
       >
         <KeyboardArrowLeftIcon fontSize="large" />
       </button>
@@ -65,6 +66,7 @@ function CommantsController({ isBeginning, isEnding }: Props) {
         className={`${classes.btn} ${classes.btn_right}`}
         disabled={isEnding}
         style={isItLarge ? { right: "-32px" } : null}
+        aria-label="slide to next"
       >
         <KeyboardArrowRightIcon fontSize="large" />
       </button>

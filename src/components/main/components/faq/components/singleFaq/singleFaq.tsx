@@ -26,6 +26,7 @@ const SingleFaq = ({ question, answer, isFaqRefVisible, index }: faqType) => {
       >
         <Accordion
           sx={{ borderRadius: "10px", border: "none", outline: "none" }}
+          key={index}
         >
           <AccordionSummary
             expandIcon={

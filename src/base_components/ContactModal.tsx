@@ -130,7 +130,6 @@ function ContactModal() {
   const handlePhoneChange = (newValue: string) => {
     setPhone(newValue);
   };
-  console.log(phone);
   return (
     <>
       <Dialog
@@ -165,7 +164,7 @@ function ContactModal() {
             <form
               onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
-                addUserWhoWantsToTalk(phone, name)
+                addUserWhoWantsToTalk(phone.trim(), name.trim())
                   .then(() => {
                     setHideSnackbar(true);
                     setBackStatus("success");

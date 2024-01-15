@@ -63,7 +63,7 @@ const useStyles = makeStyles()((theme) => ({
     marginRight: "auto",
   },
   tabs: {
-    gap: "10px",
+    gap: "5px",
     ".MuiTabs-indicator": {
       backgroundColor: "transparent",
     },
@@ -75,16 +75,11 @@ const useStyles = makeStyles()((theme) => ({
       opacity: 0.3,
       backgroundColor: "#666",
     },
-    ".css-heg063-MuiTabs-flexContainer": {
-      gap: "10px",
-    },
-    ".mui-heg063-MuiTabs-flexContainer": {
-      gap: "10px",
-    },
     borderRadius: "6px",
   },
   tab: {
-    gap: "10px",
+    marginLeft: "5px",
+    marginRight: "5px",
     backgroundColor: "white",
     borderRadius: "6px",
     color: "black",
@@ -222,6 +217,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
     return (
       <Zoom
         in={!!contactContext?.state.lng && isSolutionRefVisible}
+        key={i}
         style={{
           transitionDelay:
             !!contactContext?.state.lng && isSolutionRefVisible
@@ -242,6 +238,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
   const titles = tabs?.map((tab, i) => {
     return (
       <Slide
+        key={i}
         direction="down"
         in={!!contactContext?.state.lng && isSolutionRefVisible}
         style={{
@@ -256,7 +253,6 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
     );
   });
 
-  console.log(swiperImgs);
   return (
     <>
       <div key={value} className={classes.tab_table}>
@@ -323,7 +319,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
             >
               {swiperImgs.map((item, index) => (
                 <SwiperSlide
-                  key={index + ":swiper"}
+                  key={index}
                   className={`h-full w-full m-0 border-0 text-center flex items-center justify-center text-white font-bold ${colors[index]}`}
                 >
                   <img
@@ -336,6 +332,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
                   <IconButton
                     className={classes.swiper_btn}
                     onClick={() => setSwiperImgFull({ open: true, img: index })}
+                    aria-label={`expand full screen mode image ${index + 1}`}
                   >
                     <OpenInFullIcon />
                   </IconButton>
@@ -361,6 +358,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
           <IconButton
             className={classes.swiper_btn}
             onClick={handleCloseImgFull}
+            aria-label="close button for full screen image"
           >
             <CloseFullscreenIcon />
           </IconButton>
@@ -387,6 +385,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
                   return { ...pre, img: pre.img - 1 };
                 })
               }
+              aria-label="previous image"
             >
               <ArrowBackIosNewIcon />
             </ListItemButton>
@@ -399,6 +398,7 @@ function Tab({ tabs, isSolutionRefVisible }: Props) {
                   return { ...pre, img: pre.img + 1 };
                 })
               }
+              aria-label="got to next image"
             >
               <ArrowForwardIosIcon />
             </ListItemButton>

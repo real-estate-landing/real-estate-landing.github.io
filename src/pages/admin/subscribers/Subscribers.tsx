@@ -325,8 +325,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   function returnFilteredArray(arr: string[], search: string) {
     return arr?.filter((val) => val.includes(search ?? "") && val.length > 0);
   }
-  console.log({ names });
-  console.log({ phones });
+
   useEffect(() => {
     if (name?.length === 0) searchByName(undefined);
   }, [name]);
@@ -598,7 +597,7 @@ function Subscribers() {
     name: undefined,
     status: undefined,
   });
-  console.log("selected Items to delete", selected);
+
   const [selectedId, setSelectedId] = useState("");
   const [reloadTable, setReloadTable] = useState(true);
   const [page, setPage] = React.useState(0);
@@ -641,10 +640,9 @@ function Subscribers() {
     }
   }, []);
   useEffect(() => {
-    console.log({ searchFilter });
     fetchData();
   }, [page, rowsPerPage, direction, reloadTable, searchFilter]);
-  console.log(contactsController?.data);
+
   const rows: subscriberTableType[] = contactsController?.data?.map((item) => {
     return createData(
       item.id,
@@ -728,7 +726,6 @@ function Subscribers() {
   };
 
   const handleChangePage = (_event: unknown, newPage: number) => {
-    console.log(newPage);
     setDirection(
       newPage === 0 ? undefined : newPage > page ? "forward" : "back"
     );

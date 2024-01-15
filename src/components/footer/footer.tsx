@@ -15,7 +15,6 @@ import { useContact } from "../../contexts/contact";
 import clsx from "clsx";
 import { Element } from "react-scroll";
 import { useInView } from "react-intersection-observer";
-// import Link from "../../base_components/Link";
 
 const useStyles = makeStyles()((theme) => ({
   root: {
@@ -135,7 +134,7 @@ export default function Footer() {
               style={{ transitionDelay: "700ms" }}
             >
               <a
-                href="/"
+                href="/policy"
                 className={clsx(styles.footerLink, "mt-5 max-[650px]:hidden")}
               >
                 ©{new Date().getFullYear()}{" "}
@@ -271,14 +270,8 @@ export default function Footer() {
               }}
             >
               <div className="flex gap-4 justify-center mt-4">
-                <a href="/" className={styles.footerLink}>
+                <a href="/terms" className={styles.footerLink}>
                   {contactContext?.state.lng && t("exl1")}
-                </a>
-                <a href="/" className={styles.footerLink}>
-                  {contactContext?.state.lng && t("exl2")}
-                </a>
-                <a href="/" className={styles.footerLink}>
-                  {contactContext?.state.lng && t("exl3")}
                 </a>
               </div>
             </Zoom>
@@ -289,7 +282,7 @@ export default function Footer() {
             style={{ transitionDelay: "900ms" }}
           >
             <a
-              href="#"
+              href="/policy"
               className={clsx(
                 styles.footerLink,
                 "mt-5 hidden max-[650px]:block decoration-[none]"

@@ -175,7 +175,7 @@ export function updateUserStatus(
           isPurchased: false,
           isWannaTry: false,
         };
-  console.log("server", id, statusPack);
+
   return updateDoc(updatingUser, {
     ...statusPack,
   });
@@ -195,7 +195,7 @@ export function updateSubscriberStatus(
           isActive: true,
           isBlocked: false,
         };
-  console.log("server", id, statusPack);
+
   return updateDoc(updatingUser, {
     ...statusPack,
   });
@@ -242,7 +242,6 @@ export async function returnPaginatedContacts(
   const users: contactsType = [];
 
   if (startingAt) {
-    console.log({ startingAt });
     initialQuery =
       page === "forward"
         ? query(
@@ -310,7 +309,6 @@ export async function returnPaginatedSubscribers(
   const users: subscribersType = [];
 
   if (startingAt) {
-    console.log({ startingAt });
     initialQuery =
       page === "forward"
         ? query(
@@ -372,8 +370,7 @@ export async function addUserWhoWantsToTalk(phoneNumber: string, name: string) {
       const allPhones = phones.data()?.values.split(";");
       allNames.push(name);
       allPhones.push(phoneNumber);
-      console.log("trynames", names.data()?.values);
-      console.log("tryphones", phones.data()?.values);
+
       setDoc(namesBase, {
         values: allNames.join(";"),
       });
@@ -400,7 +397,7 @@ export async function addUserForNews(email: string, name: string) {
   const checkEmail = checkEmailIsValid(email);
 
   const users = await checkUserInDb(undefined, undefined, email, "subscribers");
-  console.log({ checkEmail });
+
   if (checkEmail) {
     if (users?.[0]?.id) {
       const updatingUser = doc(db, "subscribers", users?.[0].id);

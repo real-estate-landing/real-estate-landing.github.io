@@ -29,13 +29,16 @@ export const routes: ISwitchItem[] = [
   },
 ];
 
-interface routeMethods extends Window {
+export interface routeMethods extends Window {
+  openUserPanel: () => void;
   openAdminPanel: () => void;
 }
 
-interface docMethod extends Document {
+export interface docMethod extends Document {
+  openUserPanel: () => void;
   openAdminPanel: () => void;
 }
+(window as unknown as routeMethods).openUserPanel = () => history.push("/");
 (window as unknown as routeMethods).openAdminPanel = () =>
   history.push("/admin");
 (document as unknown as docMethod).openAdminPanel = () =>

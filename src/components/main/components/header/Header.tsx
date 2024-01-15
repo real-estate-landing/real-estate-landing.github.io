@@ -46,7 +46,6 @@ const useStyles = makeStyles()((theme) => ({
 function MainHeader() {
   const { classes } = useStyles();
   const contactContext = useContact();
-  console.log(contactContext);
   const { ref: headerRef, inView: isHeaderVisible } = useInView();
   const {
     t,
@@ -96,6 +95,7 @@ function MainHeader() {
             variant="contained"
             color="primary"
             onClick={contactContext?.actions.openModal}
+            aria-label={t("try_btn")}
           >
             {contactContext?.state.lng && t("try_btn")}
           </Button>

@@ -39,6 +39,7 @@ export default function Faq() {
   const result = faqs.map((f, index) => {
     return (
       <SingleFaq
+        key={index}
         question={f.question}
         answer={f.answer}
         isFaqRefVisible={isFaqRefVisible}

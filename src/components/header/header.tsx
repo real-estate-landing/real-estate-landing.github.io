@@ -1,5 +1,6 @@
 import Logo from "../../assets/images/logo.png";
 import {
+  Box,
   Button,
   Divider,
   IconButton,
@@ -14,6 +15,7 @@ import {
 } from "@mui/material";
 import GTranslateIcon from "@mui/icons-material/GTranslate";
 import MenuIcon from "@mui/icons-material/Menu";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "../../styles";
 import React, { useState } from "react";
@@ -21,6 +23,7 @@ import RippleLink from "../../base_components/RippleLink";
 import Flag from "./components/Flag";
 import { useContact } from "../../contexts/contact";
 import { useSettings } from "../../contexts/setting-context";
+import { useLocation } from "react-router";
 
 const useStyles = makeStyles()((theme) => ({
   root: {
@@ -110,6 +113,7 @@ const useStyles = makeStyles()((theme) => ({
   // }
 }));
 export default function Header() {
+  const location = useLocation();
   const contactContext = useContact();
   const settings = useSettings();
   const {
@@ -117,7 +121,6 @@ export default function Header() {
     i18n: { language, changeLanguage },
   } = useTranslation();
   const { classes } = useStyles();
-  console.log(contactContext?.state);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [sidebar, setSidebar] = useState(false);
@@ -136,7 +139,14 @@ export default function Header() {
     <React.Fragment>
       <div className={classes.navbar}>
         <Slide direction="right" in={!!contactContext?.state.lng}>
-          <img src={Logo} alt="logo" loading="lazy" />
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            {location.pathname == "/terms" || location.pathname == "/policy" ? (
+              <IconButton onClick={() => window.location.replace("/")}>
+                <ArrowBackIcon />
+              </IconButton>
+            ) : null}
+            <img src={Logo} alt="logo" loading="lazy" />
+          </Box>
         </Slide>
         <ul className={classes.nav_ul}>
           <Zoom
@@ -202,6 +212,7 @@ export default function Header() {
             <Button
               variant="contained"
               color="primary"
+              aria-label="order crm"
               onClick={() => contactContext?.actions.openModal()}
             >
               {contactContext?.state.lng && t("order_crm")}
@@ -234,6 +245,7 @@ export default function Header() {
           <IconButton
             className={classes.menu_btn}
             onClick={() => toggleDrawer(true)}
+            aria-label="menu button"
           >
             <MenuIcon />
           </IconButton>
@@ -426,6 +438,7 @@ export default function Header() {
                 color="primary"
                 onClick={() => contactContext?.actions.openModal()}
                 sx={{ width: "100%" }}
+                aria-label="order crm"
               >
                 {contactContext?.state.lng && t("order_crm")}
               </Button>
