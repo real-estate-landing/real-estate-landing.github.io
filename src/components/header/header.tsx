@@ -23,7 +23,7 @@ import RippleLink from "../../base_components/RippleLink";
 import Flag from "./components/Flag";
 import { useContact } from "../../contexts/contact";
 import { useSettings } from "../../contexts/setting-context";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const useStyles = makeStyles()((theme) => ({
   root: {
@@ -113,6 +113,7 @@ const useStyles = makeStyles()((theme) => ({
   // }
 }));
 export default function Header() {
+  const navigate = useNavigate();
   const location = useLocation();
   const contactContext = useContact();
   const settings = useSettings();
@@ -141,7 +142,7 @@ export default function Header() {
         <Slide direction="right" in={!!contactContext?.state.lng}>
           <Box sx={{ display: "flex", flexDirection: "row" }}>
             {location.pathname == "/terms" || location.pathname == "/policy" ? (
-              <IconButton onClick={() => window.location.replace("/")}>
+              <IconButton onClick={() => navigate("/")}>
                 <ArrowBackIcon />
               </IconButton>
             ) : null}
