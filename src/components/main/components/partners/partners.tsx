@@ -17,10 +17,10 @@ export default function Partners() {
       img: newHouseImg,
       header: t("partnersHeader1"),
       text: t("partnersText1"),
-      telNumber: "",
-      instagram: "",
+      telNumber: "+998946627878",
+      instagram: "https://www.instagram.com/new.house.uz/?igsh=MzRlODBiNWFlZA%3D%3D",
       facebook: "",
-      telegram: "",
+      telegram: "https://t.me/NEWHOUSE_Nedvijka",
     },
     {
       img: kntImg,
@@ -35,10 +35,10 @@ export default function Partners() {
       img: newLife,
       header: t("partnersHeader3"),
       text: t("partnersText3"),
-      telNumber: "",
-      instagram: "",
-      facebook: "",
-      telegram: "",
+      telNumber: "+998977773419",
+      instagram: "https://www.instagram.com/itkeysofttech/",
+      facebook: "https://www.facebook.com/ITKEYUZ?mibextid=LQQJ4d",
+      telegram: "https://t.me/ITKEYUZB",
     },
   ];
 

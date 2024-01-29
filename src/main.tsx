@@ -1,27 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { SettingsProvider } from "./contexts/setting-context.tsx";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 
-function fallbackRender({ error }) {
+function FallbackRender() {
   return (
-    <div role="alert">
-      <p>{error.name}</p>
-      <pre style={{ color: "red" }}>{error.message}</pre>
-    </div>
+      <Navigate to={'/error'} replace={true}></Navigate>
   );
 }
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ErrorBoundary fallbackRender={fallbackRender}>
       <BrowserRouter>
+    <ErrorBoundary fallbackRender={FallbackRender}>
         <SettingsProvider>
           <App />
         </SettingsProvider>
-      </BrowserRouter>
     </ErrorBoundary>
+      </BrowserRouter>
   </React.StrictMode>
 );

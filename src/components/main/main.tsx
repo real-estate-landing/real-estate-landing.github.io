@@ -5,6 +5,7 @@ import Partners from "./components/partners/partners";
 import Comments from "./components/comments/comments";
 import Subscription from "./components/subscription/subscription";
 import Faq from "./components/faq/faq";
+import { useEffect } from "react";
 
 export default function Main() {
   return (
