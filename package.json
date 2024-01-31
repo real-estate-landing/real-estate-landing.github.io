@@ -34,6 +34,7 @@
     "swiper": "11.0.5",
     "tss-react": "4.9.3",
     "uuid": "9.0.1",
+    "vite-plugin-pwa": "^0.17.5",
     "wouter": "^2.12.1"
   },
   "devDependencies": {

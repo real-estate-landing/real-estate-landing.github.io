@@ -19,7 +19,7 @@ export default function Partners() {
       text: t("partnersText1"),
       telNumber: "+998946627878",
       instagram: "https://www.instagram.com/new.house.uz/?igsh=MzRlODBiNWFlZA%3D%3D",
-      facebook: "",
+      facebook: "https://www.facebook.com/newhousetashkent/",
       telegram: "https://t.me/NEWHOUSE_Nedvijka",
     },
     {

@@ -5,7 +5,50 @@ import fullReload from "vite-plugin-full-reload";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 import react from "@vitejs/plugin-react-swc";
 import { splitVendorChunkPlugin } from "vite";
-
+import { VitePWA } from "vite-plugin-pwa";
+const manifestForPlugIn = {
+  registerType:'prompt',
+  includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+  manifest:{
+    name:"Real Estate CRM",
+    short_name:"RE-CRM",
+    description:"real-estate-crm or real estate crm web application provides centralized data storage, process automation and increased efficiency of interaction with customers, which significantly simplifies sales management.",
+    icons:[{
+      src: '/images/128p.png',
+      sizes:'128x128',
+      type:'image/png',
+    },
+    {
+      src: '/images/192p.png',
+      sizes: '192x192',
+      type: 'image/png'
+    },
+    {
+      src: '/images/512p.png',
+      sizes: '512x512',
+      type: 'image/png'
+    },
+    {
+      src: '/images/512p.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'any'
+    },
+    {
+      src: '/images/512p.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'maskable'
+    }
+  ],
+  theme_color:'#171717',
+  background_color:'#f0e7db',
+  display:"standalone",
+  scope:'/',
+  start_url:"/",
+  orientation:'portrait'
+  }
+}
 export default defineConfig({
   plugins: [
     react(),
@@ -23,6 +66,7 @@ export default defineConfig({
       polyfills: ["es.promise.finally", "es/map", "es/set"],
       modernPolyfills: ["es.promise.finally"],
     }),
+    VitePWA(manifestForPlugIn)
   ],
   build: {
     target: "chrome87",
