@@ -70,7 +70,7 @@ export default function Card({
         </Tooltip>
         {phoneNumber && (
           <span className={classes.contact_text}>
-            <a href="tel:+935449996">
+            <a href={"tel:" + phoneNumber}>
               <CallIcon fontSize="small" /> {phoneNumber}
             </a>
           </span>
