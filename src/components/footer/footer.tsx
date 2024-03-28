@@ -221,7 +221,7 @@ export default function Footer() {
                   transitionDelay: isFooterRefVisible ? "400ms" : "0ms",
                 }}
               >
-                <a href="https://t.me/ITKEYUZB" target="_blank">
+                <a href="https://t.me/realestatecrm" target="_blank">
                   <img
                     src={telegram}
                     alt="telegram social-link"
@@ -236,7 +236,7 @@ export default function Footer() {
                 }}
               >
                 <a
-                  href="https://instagram.com/ik_crm.uz?igshid=OGQ5ZDc2ODk2ZA=="
+                  href="https://www.instagram.com/itkeyuzb?igsh=MTZqbGFiaDhlYXozMQ=="
                   target="_blank"
                 >
                   <img
