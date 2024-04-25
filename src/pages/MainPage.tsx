@@ -5,6 +5,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import ContactProvider from "../contexts/contact";
 import { initializeI18n } from "../i18n";
 import { useRoutes } from "react-router";
+import QuickContact from "../components/QuickContact";
 
 function MainPage() {
   const content = useRoutes(routes);
@@ -22,6 +23,7 @@ function MainPage() {
         <ContactProvider lng={settings.language}>
           <CssBaseline />
           {settings && content}
+          <QuickContact />
         </ContactProvider>
       </ThemeProvider>
     </>

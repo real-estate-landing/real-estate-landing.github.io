@@ -2,14 +2,18 @@ import { useContact } from "../contexts/contact";
 import { makeStyles } from "../styles";
 import {
   Alert,
+  Box,
   Button,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Divider,
   IconButton,
   Paper,
+  Slide,
   Snackbar,
   TextField,
 } from "@mui/material";
@@ -19,6 +23,10 @@ import { useTranslation } from "react-i18next";
 import NiceImg from "../assets/images/image_1.png";
 import { MuiTelInput } from "mui-tel-input";
 import { addUserWhoWantsToTalk } from "../lib/firebase/firestore";
+import CallIcon from "@mui/icons-material/Call";
+import EmailIcon from "@mui/icons-material/Email";
+import PlaceIcon from "@mui/icons-material/Place";
+import Logo from "../assets/images/logo.png";
 
 const useStyles = makeStyles()((theme) => ({
   root: {
@@ -111,6 +119,31 @@ const useStyles = makeStyles()((theme) => ({
     boxShadow: "none",
   },
   nice_img: {},
+  contact_text: {
+    fontSize: "14px",
+    fontWeight: "600",
+  },
+  logo_pack: {
+    display: "flex",
+    gap: "5px",
+  },
+  primary_text: {
+    color: theme.palette.text.secondary,
+    fontSize: "18px",
+    fontWeight: "bold",
+    lineHeight: "1.2rem",
+  },
+  secondary_text: {
+    color: theme.palette.text.primary,
+    fontSize: "18px",
+    fontWeight: "bold",
+    lineHeight: "1.2rem",
+  },
+  text_wrap: {
+    display: "flex",
+    flexDirection: "column",
+    alignSelf: "center",
+  },
 }));
 
 function ContactModal() {
@@ -120,7 +153,7 @@ function ContactModal() {
   const [backStatus, setBackStatus] = useState("");
   const contactContext = useContact();
   const { t } = useTranslation();
-  const { classes } = useStyles();
+  const { classes, cx } = useStyles();
 
   useEffect(() => {
     if (backStatus === "success") {
@@ -200,6 +233,40 @@ function ContactModal() {
                 {contactContext?.state.lng && t("submit")}
               </Button>
             </form>
+            <Divider
+              sx={(theme) => ({ backgroundColor: theme.palette.primary.main })}
+            />
+            <Divider className="mt-4">
+              <Chip label={t("h_tab4")} size="medium" />
+            </Divider>
+            <Box>
+              <div className="flex flex-wrap justify-between items-center mb-2">
+                <div className={classes.logo_pack}>
+                  <img src={Logo} alt="logo" loading="lazy" />
+                  <div className={classes.text_wrap}>
+                    <span className={classes.primary_text}>Real</span>
+                    <span className={classes.secondary_text}>Estate</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className={classes.contact_text}>
+                    <a href="tel:+998977773419">
+                      <CallIcon fontSize="small" /> +998977773419
+                    </a>
+                  </span>
+
+                  <span className={classes.contact_text}>
+                    <a href="mailto:support@itkey.uz">
+                      <EmailIcon fontSize="small" /> @itkeysofttech
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <span className={cx(classes.contact_text)}>
+                <PlaceIcon fontSize="small" />{" "}
+                {contactContext?.state.lng && t("address")}
+              </span>
+            </Box>
           </Paper>
         </DialogContent>
         <DialogActions className={classes.dialogAction}></DialogActions>

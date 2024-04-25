@@ -21,6 +21,7 @@ import {
   lightText,
   lightWarning,
 } from "./colors";
+import keyframesList from "./keyframesList";
 
 interface ThemeConfig {
   direction?: Direction;
@@ -39,8 +40,21 @@ declare module "@mui/material/styles" {
     laptop: true;
     desktop: true;
   }
-}
 
+  interface Theme {
+    keyframesList: typeof keyframesList;
+  }
+  // eslint-disable-next-line no-unused-vars
+  interface ThemeOptions {
+    keyframesList?: typeof keyframesList;
+  }
+}
+interface ExtendedThemeOptions extends ThemeOptions {
+  keyframesList: typeof keyframesList;
+}
+const extendedBaseThemeOptions: ExtendedThemeOptions = {
+  keyframesList,
+};
 const baseThemeOptions: ThemeOptions = {
   breakpoints: {
     values: {
@@ -104,6 +118,7 @@ export const createCustomTheme = (config: ThemeConfig = {}): Theme => {
   const theme = responsiveFontSizes(
     createTheme(
       { ...baseThemeOptions },
+      { ...extendedBaseThemeOptions },
       { ...themeOptions },
       {
         direction: config.direction,

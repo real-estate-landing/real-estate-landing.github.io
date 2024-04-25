@@ -48,11 +48,7 @@ const useStyles = makeStyles()((theme) => ({
     display: "flex",
     gap: "5px",
   },
-  text_wrap: {
-    display: "flex",
-    flexDirection: "column",
-    alignSelf: "center",
-  },
+
   primary_text: {
     color: theme.palette.text.secondary,
     fontSize: "18px",
@@ -68,6 +64,11 @@ const useStyles = makeStyles()((theme) => ({
   contact_text: {
     fontSize: "14px",
     fontWeight: "600",
+  },
+  text_wrap: {
+    display: "flex",
+    flexDirection: "column",
+    alignSelf: "center",
   },
 }));
 

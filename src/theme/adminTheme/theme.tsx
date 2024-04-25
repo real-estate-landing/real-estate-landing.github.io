@@ -742,7 +742,6 @@ const lightThemeOptions: ExtendedThemeOptions = {
       default: lightBackground.default,
       paper: lightBackground.paper,
     },
-    divider: lightNeutral[200],
     error: {
       contrastText: lightError.contrast,
       dark: lightError.dark,
@@ -1059,7 +1058,6 @@ const darkThemeOptions: ExtendedThemeOptions = {
       default: darkBackground.default,
       paper: darkBackground.paper,
     },
-    divider: darkNeutral[200],
     error: {
       contrastText: darkError.contrast,
       dark: darkError.dark,
