@@ -1,5 +1,4 @@
 import { useContact } from "../contexts/contact";
-import { useTranslation } from "react-i18next";
 import { makeStyles } from "../styles";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
@@ -49,7 +48,6 @@ const useStyles = makeStyles()((theme) => ({
   },
 }));
 function QuickContact() {
-  const { t } = useTranslation();
   const { actions } = useContact();
   const { classes } = useStyles();
   return (
