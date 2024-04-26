@@ -23,7 +23,6 @@ function MainPage() {
         <ContactProvider lng={settings.language}>
           <CssBaseline />
           {settings && content}
-          <QuickContact />
         </ContactProvider>
       </ThemeProvider>
     </>

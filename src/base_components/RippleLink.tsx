@@ -11,6 +11,7 @@ type Props = {
   children?: React.ReactNode;
   menu?: boolean;
   mode?: "full" | "auto";
+  link?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const useStyles = makeStyles()((theme) => ({
@@ -42,7 +43,7 @@ const useStyles = makeStyles()((theme) => ({
   },
 }));
 
-function RippleLink({ text, href, children, menu, mode }: Props) {
+function RippleLink({ text, href, children, menu, mode, link }: Props) {
   const { classes } = useStyles();
   const rippleRef: MutableRefObject<null | {
     start: Function;
@@ -63,7 +64,7 @@ function RippleLink({ text, href, children, menu, mode }: Props) {
   };
   return (
     <>
-      {!menu ? (
+      {!menu && !link ? (
         <ScrollLink
           to={href}
           activeClass={classes.nav_li_active}
@@ -83,6 +84,11 @@ function RippleLink({ text, href, children, menu, mode }: Props) {
           </span>
           <TouchRipple ref={rippleRef} center={false} />
         </ScrollLink>
+      ) : link ? (
+        <>
+          <div className={classes.nav_li}>{children}</div>
+          <TouchRipple ref={rippleRef} center={false} />
+        </>
       ) : (
         <Button
           style={mode === "full" ? { width: "100%" } : { width: "auto" }}

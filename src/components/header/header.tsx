@@ -202,6 +202,18 @@ export default function Header() {
               />
             </li>
           </Zoom>
+          <Zoom
+            in={!!contactContext?.state.lng}
+            style={{
+              transitionDelay: contactContext?.state.lng ? "500ms" : "0ms",
+            }}
+          >
+            <li>
+              <RippleLink href="tel:+998977773419" text={""} link>
+                <a href="tel:+998977773419">+998977773419</a>
+              </RippleLink>
+            </li>
+          </Zoom>
         </ul>
         <Paper className={classes.nav_set}>
           <Zoom
@@ -410,6 +422,20 @@ export default function Header() {
                 text={contactContext?.state.lng && t("h_tab4")}
                 mode="full"
               />
+            </ListItem>
+            <ListItem
+              key={3}
+              disablePadding
+              sx={{
+                margin: "auto",
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+              <RippleLink href="" text={""} mode="full" link>
+                <a href="tel:+998977773419">+998977773419</a>
+              </RippleLink>
             </ListItem>
           </List>
           <Divider />
